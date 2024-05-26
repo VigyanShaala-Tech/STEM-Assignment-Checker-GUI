@@ -34,7 +34,9 @@ Access the GUI at the provided URL (usually http://localhost:8501).
 Enter your details, select the assignment file to be reviewed, choose email-id and feedbacks for that email-id.
 
 # Developer Instructions:
-Running the Streamlit STEM-Assignment-Checker-App:
+
+## Running the Streamlit STEM-Assignment-Checker-App:
+
 Importing Libraries:
 Open a Python environment or code editor.
 Import necessary libraries using the provided script.
@@ -45,5 +47,6 @@ Implement user inputs and error handling as specified in the script.
 
 Running the Application:
 Follow Method 1 or Method 2 as mentioned in Instructions.
-Conclusion:
+
+# Conclusion:
 By following this comprehensive readme, users can effectively run the STEM-Assignment-Checker-GUI application, automate the feedback process, generate excel sheet, and developers can maintain and update the application.
