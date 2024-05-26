@@ -8,5 +8,6 @@ The GUI facilitates real-time monitoring of assignment processing, empowering wo
 
 # Repository Structure
 GUI_Checker_Code/: Includes the Python script for automating the feedback mechanism and generating data for further AI/ML models. Also includes the GUI bat.
+
 Files/: Placeholder for any data files required by the application.
 Graphics/: Images and logo files related to the project.
