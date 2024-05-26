@@ -7,6 +7,6 @@ The objective is to enhance the efficiency of the assignment feedback process by
 The GUI facilitates real-time monitoring of assignment processing, empowering workflow adjustments for optimal efficiency. It drastically reduces assignment feedback time from 10 minutes to 1 minute, enhancing user experience and productivity. It serves as a vital data source for AI/ML model training, setting the stage for future feedback system automation and efficiency improvements.
 
 # Repository Structure
-GUI_Checker_Code/: Includes the Python script for automating the feedback mechanism and generating data for further AI/ML models.
-Data/: Placeholder for any data files required by the application.
-graphics/: Images and logo files related to the project.
+GUI_Checker_Code/: Includes the Python script for automating the feedback mechanism and generating data for further AI/ML models. Also includes the GUI bat.
+Files/: Placeholder for any data files required by the application.
+Graphics/: Images and logo files related to the project.
