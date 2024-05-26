@@ -12,3 +12,37 @@ GUI_Checker_Code/: Includes the Python script for automating the feedback mechan
 Files/: Placeholder for any data files required by the application.
 
 Graphics/: Images and logo files related to the project.
+
+# Prerequisites:
+Python installed (version 3.6 or higher).
+Required Python libraries installed (pandas, streamlit, pyperclip, os, etc.).
+Internet access for external resources.
+
+# Instructions:
+Running the Streamlit Career Exploration App:
+Method 1: Using GUI.bat File
+Locate the GUI.bat file in the GUI_Checker_Code/ directory.
+Double-click on GUI.bat to launch the application.
+Alternatively, create a shortcut for GUI.bat on your desktop for convenient access.
+
+# Method 2: Using Streamlit Script
+Open a command prompt or terminal.
+Navigate to the scripts/ directory using cd path/to/your/application.
+Run the command: streamlit run Home.py.
+Access the GUI at the provided URL (usually http://localhost:8501).
+Enter your details, select the assignment file to be reviewed, choose email-id and feedbacks for that email-id.
+
+# Developer Instructions:
+Running the Streamlit STEM-Assignment-Checker-App:
+Importing Libraries:
+Open a Python environment or code editor.
+Import necessary libraries using the provided script.
+
+Creating the Streamlit Interface:
+Define the Streamlit interface within the main() function.
+Implement user inputs and error handling as specified in the script.
+
+Running the Application:
+Follow Method 1 or Method 2 as mentioned in Instructions.
+Conclusion:
+By following this comprehensive readme, users can effectively run the STEM-Assignment-Checker-GUI application, automate the feedback process, generate excel sheet, and developers can maintain and update the application.
