@@ -14,9 +14,13 @@ Files/: Placeholder for any data files required by the application.
 Graphics/: Images and logo files related to the project.
 
 # Prerequisites:
+
 Python installed (version 3.6 or higher).
+
 Required Python libraries installed (pandas, streamlit, pyperclip, os, etc.).
+
 Internet access for external resources.
+
 
 # Instructions:
 Running the Streamlit Career Exploration App:
