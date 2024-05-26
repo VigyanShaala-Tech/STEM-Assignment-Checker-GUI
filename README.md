@@ -20,12 +20,13 @@ Internet access for external resources.
 
 # Instructions:
 Running the Streamlit Career Exploration App:
+
 Method 1: Using GUI.bat File
 Locate the GUI.bat file in the GUI_Checker_Code/ directory.
 Double-click on GUI.bat to launch the application.
 Alternatively, create a shortcut for GUI.bat on your desktop for convenient access.
 
-# Method 2: Using Streamlit Script
+Method 2: Using Streamlit Script
 Open a command prompt or terminal.
 Navigate to the scripts/ directory using cd path/to/your/application.
 Run the command: streamlit run Home.py.
