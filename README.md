@@ -26,7 +26,7 @@ Internet access for external resources.
 Running the Streamlit Career Exploration App:
 
 Method 1: Using GUI.bat File
-Locate the GUI.bat file in the GUI_Checker_Code/ directory.
+Locate the GUI.bat file in the scripts/ directory.
 Double-click on GUI.bat to launch the application.
 Alternatively, create a shortcut for GUI.bat on your desktop for convenient access.
 
