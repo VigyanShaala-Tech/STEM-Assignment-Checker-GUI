@@ -273,7 +273,7 @@ if selected_comments_accepted:
         if filtered_user_names:
         # Display the count for the selected user name
             selected_user_count=0
-            selected_user_count = Feedback_file[Feedback_file['User Name'] == selected_user_name].shape[0]
+            selected_user_count = Feedback_file[Feedback_file['User_Name'] == selected_user_name].shape[0]
             selected_user_count=selected_user_count+1
             st.write(f"Total Assignment corrected by {selected_user_name} : {selected_user_count+1}")
         else:
@@ -298,8 +298,8 @@ if selected_comments_accepted:
         # Extract and save email IDs
         try:
             feedback_data = pd.read_excel(r"C:\Users\User\OneDrive - VigyanShaala\00 DBMS 1.0\Kalpana\Kalpana\Assignment Checker GUI\data_files\Feedback.xlsx")
-            grouped_data = feedback_data.groupby(['key', 'Email ID']).size().reset_index().drop(0, axis=1)
-            new_dataframe = pd.DataFrame({'key': grouped_data['key'], 'email_ids': grouped_data['Email ID']})
+            grouped_data = feedback_data.groupby(['key', 'Email_ID']).size().reset_index().drop(0, axis=1)
+            new_dataframe = pd.DataFrame({'key': grouped_data['key'], 'email_ids': grouped_data['Email_ID']})
             new_dataframe.to_excel(r"C:\Users\User\OneDrive - VigyanShaala\00 DBMS 1.0\Kalpana\Kalpana\Assignment Checker GUI\data_files\unique_email_ids_unique_keys.xlsx", index=False)
             st.write('Email IDs with unique values in the unique key column have been saved to unique_email_ids_unique_keys.xlsx')
         except FileNotFoundError:
