@@ -1,7 +1,7 @@
 #import necessary libraries
 import streamlit as st
 import pandas as pd
-import pyperclip  # Import the pyperclip module for clipboard operations
+#import pyperclip  # Import the pyperclip module for clipboard operations
 import os
 from supabase_py import create_client,Client
 # Read the category dataset and extract unique categories
