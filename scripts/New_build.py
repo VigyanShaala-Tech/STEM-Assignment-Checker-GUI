@@ -6,6 +6,7 @@ import os
 from supabase_py import create_client,Client
 # Read the category dataset and extract unique categories
 import requests
+from io import StringIO  # Import StringIO directly from the io module
 from io import BytesIO
 
 
@@ -50,25 +51,51 @@ selected_Cohort = st.sidebar.selectbox("Select a Cohort", ["Incubator_1","Incuba
 st.write("Selected Cohort:", selected_Cohort)
 
 # Function to read all CSV files from a folder and store them in a dictionary
-def read_assignment_files(folder_path):
-    file_mapping = {}
-    csv_files = [file for file in os.listdir(folder_path) if file.endswith('.csv')]
+# Function to read CSV files from a folder path obtained from GitHub and store them in a dictionary
+def read_assignment_files_from_github(folder_path_url):
+    response = requests.get(folder_path_url)  # Get folder contents from GitHub
     
-    for file_name in csv_files:
-        file_path = os.path.join(folder_path, file_name)
-        file_mapping[file_name] = pd.read_csv(file_path)
+    if response.status_code == 200:
+        files_info = response.json()
+        file_mapping = {}
+        
+        for file_info in files_info:
+            file_name = file_info['name']
+            file_download_url = file_info['download_url']
+            
+            if file_name.endswith('.csv'):
+                csv_response = requests.get(file_download_url)
+                
+                if csv_response.status_code == 200:
+                    csv_content = pd.read_csv(StringIO(csv_response.text))
+                    file_mapping[file_name] = csv_content
+                    #st.write(f"Successfully read CSV file: {file_name}")
+                else:
+                    st.write(f"Failed to download CSV file: {file_name}")
+    else:
+        st.write("Failed to retrieve files from the GitHub repository.")
     
     return file_mapping
-
 # Function to get the dataset for a selected assignment file
 def get_dataset(selected_assignment_file):
     return file_mapping[selected_assignment_file]
 
-# Define the folder path for CSV files
-folder_path = r"C:\Users\User\OneDrive\VS GUI\GUI\venv\stemcheck files"
+# Define the GitHub API URL for the folder containing CSV files
+github_folder_url = 'https://api.github.com/repos/akshatasatpute/Stemcheck/contents/Files'
 
-# Read all assignment files from the folder
-file_mapping = read_assignment_files(folder_path)
+# Read all assignment files from the folder path obtained from GitHub
+file_mapping = read_assignment_files_from_github(github_folder_url)
+
+# Assign actual assignment file names
+assignment_files = list(file_mapping.keys())
+
+# Sample usage of accessing a dataset for a selected assignment file
+selected_assignment_file = assignment_files[0]  # Replace index with the desired assignment file
+if selected_assignment_file in file_mapping:
+    selected_dataset = get_dataset(selected_assignment_file)
+else:
+    print("Selected assignment file not found in the dataset.")
+
 
 # Streamlit app interface
 # Create the Streamlit app interface
@@ -134,7 +161,8 @@ if 'user/email' in filtered_data.columns:
     if selected_email:
         copy_email_button_text = "Copy Email Address"
         if st.button(copy_email_button_text):
-            pyperclip.copy(selected_email)  # Copy the email address to the clipboard
+            #pyperclip.copy(selected_email)  # Copy the email address to the clipboard
+            st.code(selected_email)
             st.write("Email address copied to clipboard")  # Inform the user that the email address has been copied
 
         
@@ -242,14 +270,18 @@ if 'Accepted /Rejected' in category_dataset.columns and 'Comment' in category_da
 # Create a text box to enter marks for the selected email ID and assignment file
 if selected_email and selected_assignment_file:
     marks_key = f"marks_{selected_email}_{selected_assignment_file}"
-    marks = st.text_input("Enter Marks:", key=marks_key)
+    entered_marks = st.text_input("Enter Marks (Integer only):", key=marks_key)
+    marks = int(entered_marks) if entered_marks.isdigit() else None if entered_marks else None
+
     # Check if either of the boxes is not selected
     if not marks:
+        st.warning("Please enter a valid integer for marks.")
         st.error("Please fill in all the compulsory fields marked with * before proceeding.")
         st.stop()
     if marks:
         st.write(f"Marks entered: {marks}")
-
+    #else:
+        #st.warning("Please enter a valid integer for marks.")
 
 
 # Add an empty line to visually separate the elements
@@ -294,11 +326,12 @@ def read_data_from_supabase(table_name):
     return response.get('data')
 
 # Create a button to copy the comment for the email ID, save feedback data, and extract email IDs
-if selected_comments_accepted:
+if all_comments:
     combined_button_text = "Copy Comment, Save Feedback Data, and Extract Email IDs"
     if st.button(combined_button_text):
         # Copy the comment to the clipboard
-        pyperclip.copy(selected_comments_text_accepted)
+        #pyperclip.copy(selected_comments_text_accepted)
+        st.code(all_comments)
         
         # Create a DataFrame with the feedback data
         feedback_df = create_feedback_dataframe(unique_key, selected_user_name, selected_assignment_file, selected_status, latest_submission_email, latest_submission_no, selected_email, latest_messages, selected_comments_accepted, marks,selected_Cohort)
